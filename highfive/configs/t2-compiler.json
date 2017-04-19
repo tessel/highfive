@@ -1,0 +1,7 @@
+{
+    "groups":{
+        "all": ["@tcr", "@rwaldron", "@hipsterbrown"]
+    },
+    "contributing": "https://github.com/tessel/project/blob/master/CONTRIBUTING.md",
+    "expected_branch": "master"
+}

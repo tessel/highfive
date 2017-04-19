@@ -1,3 +1,25 @@
+Tessel highfive
+===============
+
+This is a fork of http://github.com/nrc/highfive designed to be a single
+rebased commit over the original. It's adapted to run as a Dokku app.
+See our [WWW guidelines](https://github.com/tessel/project/blob/master/WWW.md)
+for more information on deploying.
+
+```
+git remote add dokku dokku@dokku.tessel.io:highfive
+git push dokku master
+```
+
+To rebase:
+
+```
+git remote add nrc http://github.com/nrc/highfive
+git rebase nrc master
+```
+
+---
+
 Highfive
 ========
 
@@ -33,7 +55,7 @@ Adding a Project
 ================
 
 To make rust-highfive interact with a new repo, add a configuration file in
-`highfive/configs`, with a filename of the form `reponame.json`. 
+`highfive/configs`, with a filename of the form `reponame.json`.
 
 It should look like:
 
@@ -60,18 +82,18 @@ blank.
 
 `contributing` specifies the contribution guide link in the message which
 welcomes new contributors to the repository. If `contributing` is not
-present, the [Rust contributing.md][rustcontrib] will be linked instead. 
+present, the [Rust contributing.md][rustcontrib] will be linked instead.
 
 If PRs should be filed against a branch other than `master`, specify the
 correct destination in the `expected_branch` field. If `expected_branch` is
-left out, highfive will assume that PRs should be filed against `master`. 
+left out, highfive will assume that PRs should be filed against `master`.
 The bot posts a warning on any PR that targets an unexpected branch.
 
 Enabling a Repo
 ---------------
 
 Once the hooks for a repository are set up, visit the repo's webhook settings
-page at `https://github.com/org/repo/settings/hooks`. 
+page at `https://github.com/org/repo/settings/hooks`.
 
 Create a new webhook, pointing at your highfive instance's location:
 
@@ -81,5 +103,4 @@ Leave the 'secret' field blank.
 Let me select individual events: Issue comment, pull request
 Check the box by 'Active'
 
-[rustcontrib]: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md 
-
+[rustcontrib]: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md

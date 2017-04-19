@@ -51,7 +51,7 @@ submodule_warning_msg = 'These commits modify **submodules**.'
 surprise_branch_warning = "Pull requests are usually filed against the %s branch for this repo, but this one is against %s. Please double check that you specified the right target!"
 
 
-review_with_reviewer = 'r? @%s\n\n(rust_highfive has picked a reviewer for you, use r? to override)'
+review_with_reviewer = 'r? @%s\n\n(tessel-highfive has picked a reviewer for you, use r? to override)'
 review_without_reviewer = '@%s: no appropriate reviewer found, use r? to override'
 
 def review_msg(reviewer, submitter):
@@ -194,10 +194,7 @@ def find_reviewer(commit_msg):
 
 # Choose a reviewer for the PR
 def choose_reviewer(repo, owner, diff, exclude, config):
-    if not (owner == 'rust-lang' or \
-            owner == 'rust-lang-nursery' or \
-            owner == 'rust-lang-deprecated' or \
-            (owner == 'nrc' and repo == 'highfive')):
+    if owner != 'tessel':
         return ('test_user_selection_ignore_this', None)
 
     # Get JSON data on reviewers.
@@ -214,13 +211,13 @@ def choose_reviewer(repo, owner, diff, exclude, config):
 
 
     most_changed = None
+    to_mention = []
     # If there's directories with specially assigned groups/users
     # inspect the diff to find the directory (under src) with the most
     # additions
     if dirs:
         counts = {}
         cur_dir = None
-        to_mention = []
         for line in diff.split('\n'):
             if line.startswith("diff --git "):
                 # update cur_dir
